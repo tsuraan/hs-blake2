@@ -10,13 +10,24 @@ import Prelude hiding ( length )
 import qualified Crypto.Hash.Tsuraan.Blake2.Parallel as Par
 import qualified Crypto.Hash.Tsuraan.Blake2.Serial as Ser
 
-hashKey :: ByteString -> Int -> ByteString -> ByteString
+-- | Hash a strict 'ByteString' into a digest 'ByteString' using a key. This
+-- will choose to use parallel or serial Blake2 depending on the size of the
+-- input 'ByteString'.
+hashKey :: ByteString -- ^The key to use when hashing
+        -> Int        -- ^The digest size to generate; must be 1-64
+        -> ByteString -- ^The 'ByteString' to hash
+        -> ByteString
 hashKey key hashlen bytes =
   if length bytes < cutoff
     then Ser.hashKey key hashlen bytes
     else Par.hashKey key hashlen bytes
 
-hash :: Int -> ByteString -> ByteString
+-- | Hash a strict 'ByteString' into a digest 'ByteString'. This will choose to
+-- use parallel or serial Blake2 depending on the size of the input
+-- 'ByteString'
+hash :: Int        -- ^The digest size to generate; must be 1-64
+     -> ByteString -- ^The 'ByteString' to hash
+     -> ByteString
 hash hashlen bytes =
   if length bytes < cutoff
     then Ser.hash hashlen bytes
