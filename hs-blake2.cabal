@@ -12,7 +12,7 @@ maintainer:          tsuraan@gmail.com
 -- copyright:           
 category:            Data
 build-type:          Simple
--- extra-source-files:  
+extra-source-files:  cbits/alloc.h
 cabal-version:       >=1.10
 
 library
@@ -20,10 +20,12 @@ library
                      , Crypto.Hash.Tsuraan.Blake2.Parallel
                      , Crypto.Hash.Tsuraan.Blake2.Serial
   other-modules:       Crypto.Hash.Tsuraan.Blake2.Internal
+  c-sources:           cbits/alloc.c
   -- other-extensions:    
   build-depends:       base >=4.6
                      , bytestring >=0.10
   hs-source-dirs:      src
+  include-dirs:        cbits
   default-language:    Haskell2010
   ghc-options:         -Wall -lb2
 
