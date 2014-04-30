@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                hs-blake2
-version:             0.0.2
+version:             0.0.3
 synopsis:            A cryptohash-inspired library for blake2
 -- description:         
 homepage:            https://github.com/tsuraan/hs-blake2
