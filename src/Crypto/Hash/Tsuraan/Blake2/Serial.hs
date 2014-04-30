@@ -6,7 +6,7 @@ module Crypto.Hash.Tsuraan.Blake2.Serial
 , update
 , finalize
 , hash
-, hashKey
+, hash_key
 ) where
 
 import Data.ByteString ( ByteString )
@@ -76,11 +76,11 @@ finalize (Ctx state) = runFinalize blake2b_final state
 -- |Hash a 'ByteString' into a digest 'ByteString' using a key. This function
 -- always runs in serial, which is faster for very small strings but slower as
 -- the strings get larger.
-hashKey :: ByteString -- ^The key to hash with
-        -> Int        -- ^The digest size to generate; must be 1-64
-        -> ByteString -- ^The string to hash
-        -> ByteString
-hashKey key hashlen bytes = runHasher blake2b key hashlen bytes
+hash_key :: ByteString -- ^The key to hash with
+         -> Int        -- ^The digest size to generate; must be 1-64
+         -> ByteString -- ^The string to hash
+         -> ByteString
+hash_key key hashlen bytes = runHasher blake2b key hashlen bytes
 
 -- |Hash a 'ByteString' into a digest 'ByteString'. This function always runs
 -- in serial, which is faster for very small strings but slower as the strings
@@ -88,5 +88,5 @@ hashKey key hashlen bytes = runHasher blake2b key hashlen bytes
 hash :: Int        -- ^The digest size to generate; must be 1-64
      -> ByteString -- ^The string to hash
      -> ByteString
-hash = hashKey ""
+hash = hash_key ""
 

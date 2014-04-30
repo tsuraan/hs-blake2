@@ -27,9 +27,9 @@ main = defaultMain $
       ]
     , testGroup "Keyed"
       [ testProperty "Parallel"
-        $ key_update_equals_hash P.init_key P.update P.finalize P.hashKey
+        $ key_update_equals_hash P.init_key P.update P.finalize P.hash_key
       , testProperty "Serial"
-        $ key_update_equals_hash S.init_key S.update S.finalize S.hashKey
+        $ key_update_equals_hash S.init_key S.update S.finalize S.hash_key
       ]
     ]
 

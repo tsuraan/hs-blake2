@@ -6,7 +6,7 @@ module Crypto.Hash.Tsuraan.Blake2.Parallel
 , update
 , finalize
 , hash
-, hashKey
+, hash_key
 ) where
 
 import Data.ByteString ( ByteString )
@@ -76,11 +76,11 @@ finalize (Ctx state) = runFinalize blake2bp_final state
 -- |Hash a 'ByteString' into a digest 'ByteString' using a key. This function
 -- always runs in parallel, which is slower for very small strings but faster
 -- as the strings get larger.
-hashKey :: ByteString -- ^The key to hash with
-        -> Int        -- ^The digest size to generate; must be 1-64
-        -> ByteString -- ^The string to hash
-        -> ByteString
-hashKey key hashlen bytes = runHasher blake2bp key hashlen bytes
+hash_key :: ByteString -- ^The key to hash with
+         -> Int        -- ^The digest size to generate; must be 1-64
+         -> ByteString -- ^The string to hash
+         -> ByteString
+hash_key key hashlen bytes = runHasher blake2bp key hashlen bytes
 
 -- |Hash a 'ByteString' into a digest 'ByteString'. This function always runs
 -- in parallel, which is slower for very small strings but faster as the
@@ -88,5 +88,5 @@ hashKey key hashlen bytes = runHasher blake2bp key hashlen bytes
 hash :: Int        -- ^The digest size to generate; must be 1-64
      -> ByteString -- ^The string to hash
      -> ByteString
-hash = hashKey ""
+hash = hash_key ""
 

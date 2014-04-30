@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Crypto.Hash.Tsuraan.Blake2
 ( hash
-, hashKey
+, hash_key
 ) where
 
 import Data.ByteString ( ByteString, length )
@@ -13,14 +13,14 @@ import qualified Crypto.Hash.Tsuraan.Blake2.Serial as Ser
 -- | Hash a strict 'ByteString' into a digest 'ByteString' using a key. This
 -- will choose to use parallel or serial Blake2 depending on the size of the
 -- input 'ByteString'.
-hashKey :: ByteString -- ^The key to use when hashing
-        -> Int        -- ^The digest size to generate; must be 1-64
-        -> ByteString -- ^The 'ByteString' to hash
-        -> ByteString
-hashKey key hashlen bytes =
+hash_key :: ByteString -- ^The key to use when hashing
+         -> Int        -- ^The digest size to generate; must be 1-64
+         -> ByteString -- ^The 'ByteString' to hash
+         -> ByteString
+hash_key key hashlen bytes =
   if length bytes < cutoff
-    then Ser.hashKey key hashlen bytes
-    else Par.hashKey key hashlen bytes
+    then Ser.hash_key key hashlen bytes
+    else Par.hash_key key hashlen bytes
 
 -- | Hash a strict 'ByteString' into a digest 'ByteString'. This will choose to
 -- use parallel or serial Blake2 depending on the size of the input
