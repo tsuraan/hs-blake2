@@ -5,9 +5,10 @@ name:                hs-blake2
 version:             0.0.2
 synopsis:            A cryptohash-inspired library for blake2
 -- description:         
+homepage:            https://github.com/tsuraan/hs-blake2
 license:             BSD3
 license-file:        LICENSE
-author:              jay groven
+author:              Jay Groven
 maintainer:          tsuraan@gmail.com
 -- copyright:           
 category:            Data
